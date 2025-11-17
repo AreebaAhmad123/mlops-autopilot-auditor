@@ -1,0 +1,15 @@
+FROM python:3.9-slim-buster
+
+WORKDIR /app
+
+# Copy requirements.txt and install Python dependencies
+# This step assumes requirements.txt is present in the project root.
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the application code
+COPY . .
+
+# Set the entry point for the application
+# Adjust 'src/main.py' if your main script is located elsewhere (e.g., 'app.py' or 'main.py' at root)
+CMD ["python", "src/main.py"]
